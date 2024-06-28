@@ -39,10 +39,10 @@ using std::setprecision;
 using std::setw;
 using std::string;
 using std::to_string;
-using std::stringstream;
-using std::accumulate;
+// using std::stringstream;
+// using std::accumulate;
 using std::vector;
-using std::find;
+// using std::find;
 using std::count;
 using std::for_each;
 using std::partial_sort_copy;
@@ -137,7 +137,7 @@ vector<int> getGrades(const int minValue, const int maxValue, const vector<int> 
     bool numberIsNotSentinel; // If the typed number is not among the given sentinel values (breaking values)
 
     do {
-        int grade = getInteger("Type the grade or cancel with wither -999 or 999", minValue, maxValue, true, "Invalid input. Please try again.", sentinelValues);
+        int grade = getInteger("  Type the grade or cancel with wither -999 or 999", minValue, maxValue, true, "  Invalid input. Please try again.", sentinelValues);
         numberIsNotSentinel = count(sentinelValues.begin(), sentinelValues.end(), grade) == 0;
         if (numberIsNotSentinel) grades.push_back(grade);
     } while (numberIsNotSentinel);
@@ -191,14 +191,14 @@ double calcAverage(vector<int> grades) {
 // Displays the results including the grades, the letter grades, as well as the lowest, highests and the average grade
 void displayGradeResults(const vector<int> &grades, const vector<char> &letterGrades, const int highestGrade, const int lowestGrade, const double averageGrade) {
     cout << endl;
-    cout << "These are your grades: " << endl;
+    cout << "  These are your grades: " << endl;
     // Prints on the console the table with the grades & letter grades
     printGradesTable(grades, letterGrades);
 
     cout << endl;
-    cout << "The highest grade is " << highestGrade << " (" << getLetterGrade(highestGrade) << ")" << endl;
-    cout << "The lowest grade is " << lowestGrade << " (" << getLetterGrade(lowestGrade) << ")" << endl;
-    cout << setprecision(2) << fixed << "The average grade (final grade) is " << averageGrade << endl;
+    cout << "  The highest grade is " << highestGrade << " (" << getLetterGrade(highestGrade) << ")" << endl;
+    cout << "  The lowest grade is " << lowestGrade << " (" << getLetterGrade(lowestGrade) << ")" << endl;
+    cout << setprecision(2) << fixed << "  The average grade (final grade) is " << averageGrade << endl;
 }
 
 // Prints on the console a table with the grades and its equivalent letter grades
@@ -206,11 +206,11 @@ void printGradesTable(const vector<int> &grades, const vector<char> &letterGrade
     const size_t length = grades.size();
 
     cout << endl;
-    cout << "------------------------" << endl;
-    cout << "| Grade | Letter Grade |" << endl;
-    cout << "------------------------" << endl;
+    cout << "  ------------------------" << endl;
+    cout << "  | Grade | Letter Grade |" << endl;
+    cout << "  ------------------------" << endl;
     for (int i = 0; i < length; i++) {
-        cout << "|  " << setw(3) << grades[i] << "  |       " << setw(1) << letterGrades[i] << "      |" << endl;
-        cout << "------------------------" << endl;
+        cout << "  |  " << setw(3) << grades[i] << "  |       " << setw(1) << letterGrades[i] << "      |" << endl;
+        cout << "  ------------------------" << endl;
     }
 }
