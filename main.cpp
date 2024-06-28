@@ -75,8 +75,8 @@ void printGradesTable(const vector<int> &, const vector<char> &);
 
 // Main Function
 int main() {
-    constexpr int GRADE_MIN = 0; // THe minimum possible grade
-    constexpr int GRADE_MAX = 100; // THe maximum possible grade
+    constexpr int GRADE_MIN = 0; // The minimum possible grade
+    constexpr int GRADE_MAX = 100; // The maximum possible grade
     const vector<int> sentinelValues {-999, 999}; // Values to cancel the input
 
     // Gets all the grades from the user, typing on the console
