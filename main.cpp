@@ -17,19 +17,12 @@
  **/
 
 #include <iostream>
-#include <string>  // for string, to_string, etc
-// #include <cmath> // for sqrt, sin, pow
-// #include <limits> // For SHRT_MAX, SHRT_MIN, etc
-#include <iomanip> // for setprecision, setw, fixed
-// #include<array>  // for array
-#include<random> // for random_device
-// #include <cstdlib> // For rand and srand
-// #include <ctime>   // For the time function
-// #include <sstream> // for stringstream (used in humanizeInteger, humanizeDouble, etc)
-#include <vector> // to use vectors
-// #include <fstream> // For ifstream, ofstrea, fstream
-#include <numeric> // For accumulate, transform_reduce, (in the vectors)
-#include <algorithm> // For max_element, min_element, find, count, transform (to use in vectors), or for max()
+#include <string>
+#include <iomanip>
+#include<random>
+#include <vector>
+#include <numeric>
+#include <algorithm>
 
 using std::cout;
 using std::endl;
@@ -39,10 +32,8 @@ using std::setprecision;
 using std::setw;
 using std::string;
 using std::to_string;
-// using std::stringstream;
-// using std::accumulate;
+using std::accumulate;
 using std::vector;
-// using std::find;
 using std::count;
 using std::for_each;
 using std::partial_sort_copy;
