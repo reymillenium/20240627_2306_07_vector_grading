@@ -18,6 +18,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  **/
 
+
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -26,6 +27,7 @@
 #include <numeric>
 #include <algorithm>
 #include <regex>
+
 
 using std::cout;
 using std::endl;
@@ -44,6 +46,9 @@ using std::regex;
 using std::regex_match;
 
 
+// UTILITY FUNCTIONS PROTOTYPES
+
+
 // Determines if a given string is a valid integer, using a regular expression
 bool isInteger(const string &);
 
@@ -51,7 +56,7 @@ bool isInteger(const string &);
 int getInteger(const string &, int, int, bool = false, const string & = "Invalid input. Please try again.", const vector<int> & = {});
 
 
-// CUSTOM FUNCTIONS
+// CUSTOM FUNCTIONS PROTOTYPES
 
 
 // Gets the grades from the user, typing on the console
@@ -104,6 +109,10 @@ int main() {
     return 0;
 }
 
+
+// UTILITY FUNCTIONS DEFINITION
+
+
 // Determines if a given string is a valid integer, using a regular expression
 bool isInteger(const string &input) {
     const regex pattern("^[+-]?[0-9]+$");
@@ -137,7 +146,7 @@ int getInteger(const string &message, const int minValue, const int maxValue, co
 }
 
 
-// CUSTOM FUNCTIONS
+// CUSTOM FUNCTIONS DEFINITION
 
 
 // Gets the grades from the user, typing on the console
