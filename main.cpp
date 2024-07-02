@@ -1,7 +1,9 @@
 /**
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                                     *
- *   Name: 07-Vector Grading                                           *
+ *   Name: Reinier Garcia Ramos                                        *
+ *                                                                     *
+ *   Program Title/Name: 07-Vector Grading                             *
  *                                                                     *
  *   Purpose:                                                          *
  *   Receives an undetermined amount of grades provided by the user    *
@@ -23,6 +25,7 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
+#include <regex>
 
 using std::cout;
 using std::endl;
@@ -37,7 +40,12 @@ using std::vector;
 using std::count;
 using std::for_each;
 using std::partial_sort_copy;
+using std::regex;
+using std::regex_match;
 
+
+// Determines if a given string is a valid integer, using a regular expression
+bool isInteger(const string &);
 
 // Receives and validates an integer number from the console
 int getInteger(const string &, int, int, bool = false, const string & = "Invalid input. Please try again.", const vector<int> & = {});
@@ -96,22 +104,32 @@ int main() {
     return 0;
 }
 
+// Determines if a given string is a valid integer, using a regular expression
+bool isInteger(const string &input) {
+    const regex pattern("^[+-]?[0-9]+$");
+    return regex_match(input, pattern);
+}
 
 // Receives and validates an integer number from the console
 int getInteger(const string &message, const int minValue, const int maxValue, const bool showRange, const string &errorMessage, const vector<int> &sentinelValues) {
-    int number = 0; // Number typed by the user
-    bool keepAsking; // If we must keep asking for a value to the user
+    string numberAsString; // Value typed by the user, received as a string, that can be an integer or not
+    int number = 0; // Integer convertion (if possible) of the value typed by the user
+    bool keepAsking = true; // If we must keep asking for a value to the user, until receiving an integer
 
     do {
         cout << message << (showRange ? (" (" + to_string(minValue) + " - " + to_string(maxValue) + ")") : "") << ": ";
-        cin >> number;
-        cin.ignore();
+        getline(cin, numberAsString);
 
+        if (const bool isIntegerNumber = isInteger(numberAsString); !isIntegerNumber) {
+            cout << "  That's not an integer number. Try again." << endl;
+            continue; // There is no point in keep validating any further, as it's not even an integer
+        }
+
+        number = stoi(numberAsString); // When we reach this point, that means we have a proper integer
         const bool invalidInput = number < minValue || maxValue < number; // If the input is valid, based only in minimum & maximum possible values
         // If the typed number is not among the given sentinel values (breaking values)
         const bool numberIsNotSentinel = count(sentinelValues.begin(), sentinelValues.end(), number) == 0;
         keepAsking = invalidInput && numberIsNotSentinel;
-
         if (keepAsking) cout << errorMessage << endl;
     } while (keepAsking);
 
@@ -159,7 +177,8 @@ char getLetterGrade(const int grade) {
 
 // Sorts the grades in ascending order (from lowest to highest)
 vector<int> sortGrades(const vector<int> &grades) {
-    vector<int> sortedGrades(grades.size());
+    vector<int> sortedGrades(grades.size()); // Stores the sorted grades. Initialized with the same length of the given grades
+    // Sorts the elements in the range [first, last) of the given grades vector in ascending order, storing a copy of the result in the range of the sorted grades vector
     partial_sort_copy(grades.begin(), grades.end(), sortedGrades.begin(), sortedGrades.end());
     return sortedGrades;
 }
